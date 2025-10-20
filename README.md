@@ -1,5 +1,5 @@
 # messenger
-A lightweight, thread-safe C++ event system.
+A lightweight, thread-safe C++ messaging system.
 
 ## 📨 Dispatching
 Messages are safely queued across threads via `Messenger::Post()` and all dispatched when `Messenger::DispatchQueued()` is called.
