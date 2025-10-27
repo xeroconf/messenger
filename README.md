@@ -1,17 +1,17 @@
 # messenger
 A lightweight, thread-safe C++ messaging system.
 
-## 📨 Dispatching
+## Dispatching
 Messages are safely queued across threads via `Messenger::Post()` and all dispatched when `Messenger::DispatchQueued()` is called.
 This allows flexible and deterministic message handling.
 
 You may also dispatch the message immediately on the calling thread using `Messenger::Dispatch()`. This is suited for single-thread use cases where the queue may be redundant.
 
-## 🧩 Message Types
+## Message Types
 Define events using any non-generic type; no base class or interface required.
 Each event type automatically receives a unique compile-time ID (see `aufority::detail`)
 
-## 🧪 Example
+## Example
 ```c++
 
 struct UserJoinedMessage {
