@@ -1,5 +1,5 @@
 # messenger
-A lightweight, thread-safe C++ messaging system.
+Lightweight, thread-safe, header-only C++ messaging system.
 
 ## Dispatching
 Messages are safely queued across threads via `Messenger::Post()` and all dispatched when `Messenger::DispatchQueued()` is called.
@@ -9,45 +9,47 @@ You may also dispatch the message immediately on the calling thread using `Messe
 
 ## Message Types
 Define events using any non-generic type; no base class or interface required.
-Each event type automatically receives a unique compile-time ID (see `aufority::detail`)
+Each event type automatically receives a unique compile-time ID (see `aufority::msging::detail`)
 
 ## Example
 ```c++
 
-struct UserJoinedMessage {
+struct UserJoinedEvent {
     std::string name;
 }
 
 
 int main() {
     // Create the messenger instance
-    aufority::Messenger msger;
+    std::unique_ptr<aufority::msging::Messenger> msger = std::make_unique<aufority::msging::Messenger>();
+
+    aufority::msging::SubscriptionHandle handle;
 
     // Subscribe to a message type.
     // Returns a subscription handle used to unsubscribe later.
-    auto handle = msger.Subscribe<UserJoinedMessage>(
-        [](const UserJoinedMessage& msg)
+    msger->Subscribe<UserJoinedEvent>(
+        handle,
+        [](const UserJoinedEvent& msg)
         {
-            printf("Hello, %s\n", msg.name.c_str());
+            printf("Hello, %s\n", msg.name.c_str()));
         }
     );
 
-
-    UserJoinedMessage msg;
+    UserJoinedEvent msg;
     msg.name = "John";
 
     // Queue a message for later handling.
-    msger.Post(msg);
+    msger->Post(msg);
 
     // Or dispatch immediately on the calling thread.
-    msger.Dispatch(msg);
+    // msger->Dispatch(msg);
 
     // Handle any messages that are in the queue. 
     // You'd want to execute this regularly or as often
     // as you'd like to process messages.
-    msger.DispatchQueued();
+    msger->DispatchQueued();
 
     // Unsubscribe using the handle returned from Subscribe.
-    msger.Unsubscribe(handle);
+    msger->Unsubscribe(handle);
 }
 ```
