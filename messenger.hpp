@@ -192,7 +192,7 @@ namespace aufority::msging
             {
                 handleId = nextHandleId_.fetch_add(1);
                 // Handle wraparound - skip 0 as it is used for checking invalid handle
-                // There is collision check as it's unlikely with 64-bit space. We should consider adding this in future however.
+                // There is no collision check here as it's unlikely to wrap around with 64-bit space. We should however, consider adding this in future.
                 if (handleId == 0)
                 {
                     handleId = nextHandleId_.fetch_add(1);
