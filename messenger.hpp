@@ -12,20 +12,6 @@ namespace aufority::msging
     namespace detail
     {
         /// <summary>
-        /// Compile-time type ID placeholder.
-        /// </summary>
-        /// <typeparam name="T">The type for which this placeholder struct is instantiated.</typeparam>
-        /// <remarks>
-        /// This struct is not used for generating actual type IDs.
-        /// The value starts at 1 to avoid treating zero as a valid or truthy ID.
-        /// </remarks>
-        template <typename T>
-        struct TypeIdCounter
-        {
-            static constexpr uint64_t kValue = 1;
-        };
-
-        /// <summary>
         /// Gets a reference to the static counter used for generating unique type IDs.
         /// </summary>
         /// <returns>
