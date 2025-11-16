@@ -1,4 +1,23 @@
-#pragma once
+// =============================================================================
+// Messenger - https://github.com/xeroconf/messenger
+// =============================================================================
+// Description:
+//   A lightweight, thread-safe, header-only event messenger system.
+//   Simply include this header file in your project.
+//
+// License:
+//   MIT
+//
+// Author(s):
+//   https://github.com/xeroconf
+//
+// Version:
+//   1.0.1
+//
+// =============================================================================
+
+#ifndef AUFORITY_MESSENGER_HPP
+#define AUFORITY_MESSENGER_HPP
 
 #include <cstdint>
 #include <unordered_map>
@@ -405,3 +424,5 @@ namespace aufority::msging
 
     };
 }
+
+#endif
