@@ -1,5 +1,5 @@
 # messenger
-Lightweight, thread-safe, header-only C++ messaging system.
+Lightweight, thread-safe, header-only C++17 messaging system.
 
 ## Dispatching
 Messages are safely queued across threads via `Messenger::Post()` and all dispatched when `Messenger::DispatchQueued()` is called.
