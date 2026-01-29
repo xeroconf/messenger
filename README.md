@@ -26,7 +26,7 @@ int main() {
     aufority::msging::SubscriptionHandle handle;
 
     // Subscribe to a message type.
-    // Returns a subscription handle used to unsubscribe later.
+    // Store the handle somewhere, as it'll be used to unsubscribe later.
     msger->Subscribe<UserJoinedEvent>(
         handle,
         [](const UserJoinedEvent& msg)
@@ -49,7 +49,7 @@ int main() {
     // as you'd like to process messages.
     msger->DispatchQueued();
 
-    // Unsubscribe using the handle returned from Subscribe.
+    // Unsubscribe from further events using the handle.
     msger->Unsubscribe(handle);
 }
 ```
